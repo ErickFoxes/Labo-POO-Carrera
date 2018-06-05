@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 public class Gui extends JFrame{
     private JLabel [] labels;
     
-    private JButton inicio;
+    private JButton inicio,reinicio;
     
     private String [] nombres = {"Canguro","tortuga","dragon"};
     
@@ -36,6 +36,7 @@ public class Gui extends JFrame{
         
         labels = new JLabel[3];
         inicio = new JButton("Inicio");
+        reinicio = new JButton("Reinicio");
         Container container = getContentPane();
         
         for(int i=0;i<3;i++){
@@ -47,6 +48,10 @@ public class Gui extends JFrame{
         inicio.setBounds(10,0,100,30);
         container.add(inicio);
         
+        reinicio.setBounds(100,0,100,30);
+        container.add(reinicio);
+        reinicio.setVisible(false);
+        
         inicio.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -56,11 +61,38 @@ public class Gui extends JFrame{
         canguro.start();
         tortuga.start();
         dragon.start();
+        inicio.setVisible(false);
+        reinicio.setVisible(true);
         }
+        
     });
+        reinicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               for(int i=0;i<3;i++){
+            //labels[i] = new JLabel();
+           // labels[i].setIcon(new ImageIcon(getClass().getResource(nombres[i]+".gif")));
+            labels[i].setLocation(10,(i*220));
+            //container.add(labels[i]);}
+            inicio.setVisible(true);
+            reinicio.setVisible(false);
+        }
+            }
+        
+        });
     setSize(700,650);
+    
     }
     
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run(){
+                new Gui().setVisible(true);
+        }
+        });
+        
+    }
     
     
 }
