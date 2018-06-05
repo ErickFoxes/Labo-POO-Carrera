@@ -13,13 +13,7 @@ import com.guardado.gui.Gui;
  */
 public class Main {
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run(){
-                new Gui().setVisible(true);
-        }
-        });
-        
+       
         new Gui().setVisible(true);
     }
     
